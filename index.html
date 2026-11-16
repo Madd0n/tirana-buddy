@@ -2,155 +2,269 @@
 <html lang="de">
 
 <head>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1f6feb">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tirana Buddy 🇦🇱</title>
+<title>Tirana Buddy V02</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#E41E26">
 
 <style>
 
 :root{
-    --bg:#f5f7fa;
+    --primary:#E41E26;
+    --primary-dark:#B5161D;
+    --background:#f6f7fb;
     --card:#ffffff;
-    --text:#222;
-    --accent:#1f6feb;
-    --success:#22c55e;
+    --text:#232323;
     --border:#e2e8f0;
+    --success:#22c55e;
+    --warning:#f59e0b;
 }
 
 body.dark{
-    --bg:#121212;
-    --card:#1f1f1f;
+    --background:#121212;
+    --card:#1e1e1e;
     --text:#f1f1f1;
-    --accent:#4da3ff;
-    --border:#333;
+    --border:#383838;
 }
 
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-    margin:0;
-    padding:0;
-    font-family:Segoe UI,Arial,sans-serif;
-    background:var(--bg);
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:var(--background);
     color:var(--text);
 }
 
-header{
-    background:var(--accent);
+.hero{
+
+    background:linear-gradient(
+        135deg,
+        #E41E26,
+        #8b1116
+    );
+
     color:white;
-    padding:30px 25px;
+
+    padding:40px 20px;
+
+    text-align:center;
+
 }
 
-header h1{
-    margin:0;
-    font-size:38px;
+.hero img{
+
+    width:160px;
+    height:160px;
+
+    border-radius:50%;
+
+    background:white;
+
+    padding:10px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.25);
+
 }
 
-header p{
+.hero h1{
+
+    margin-top:20px;
+    font-size:42px;
+
+}
+
+.hero .subtitle{
+
     margin-top:10px;
+
     font-size:18px;
+
+    opacity:.95;
+
+}
+
+.hero .travelline{
+
+    margin-top:15px;
+
+    font-size:16px;
 }
 
 .toolbar{
-    margin-top:20px;
+
+    margin-top:25px;
+
     display:flex;
+
+    justify-content:center;
     gap:10px;
+
     flex-wrap:wrap;
+
 }
 
 .btn{
-    background:white;
-    color:var(--accent);
+
     border:none;
-    border-radius:8px;
-    padding:10px 16px;
-    cursor:pointer;
+
+    border-radius:10px;
+
+    padding:12px 18px;
+
     font-weight:bold;
+
+    cursor:pointer;
+
+    background:white;
+
+    color:#E41E26;
+}
+
+.btn:hover{
+    opacity:.92;
 }
 
 .container{
+
     max-width:1400px;
+
     margin:auto;
-    padding:20px;
+
+    padding:24px;
 }
 
-.grid{
+.dashboard{
+
     display:grid;
-    gap:20px;
-}
 
-.grid-4{
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px,1fr)
+        );
 }
 
 .card{
+
     background:var(--card);
+
     border:1px solid var(--border);
-    border-radius:16px;
+
+    border-radius:18px;
+
     padding:20px;
-    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,.05);
 }
 
 .card h2{
-    margin-top:0;
+
+    margin-bottom:15px;
+
+    font-size:22px;
 }
 
 .flightbox{
-    background:#eafbf1;
-    border-left:5px solid #22c55e;
-    padding:10px;
-    margin-bottom:10px;
+
+    background:#ecfdf5;
+
+    border-left:
+      5px solid
+      var(--success);
+
+    padding:12px;
+
     border-radius:8px;
-}
 
-.progressbar{
-    width:100%;
-    height:28px;
-    background:#ddd;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.progressfill{
-    height:100%;
-    width:0%;
-    background:#22c55e;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
+    margin-bottom:10px;
 }
 
 .stat{
-    font-size:34px;
+
+    font-size:36px;
+
     font-weight:bold;
-    color:var(--accent);
+
+    color:var(--primary);
+}
+
+.progress-wrap{
+
+    height:28px;
+
+    background:#ddd;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:10px;
+}
+
+.progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:var(--success);
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-weight:bold;
 }
 
 .section{
-    margin-top:25px;
+
+    margin-top:35px;
 }
 
 .section-title{
+
+    font-size:30px;
+
     margin-bottom:15px;
-    font-size:28px;
 }
 
 .badge{
-    border-radius:20px;
+
+    display:inline-block;
+
     padding:4px 10px;
+
+    border-radius:20px;
+
     color:white;
+
     font-size:12px;
+
+    margin-top:5px;
 }
 
 .must{
-    background:#ef4444;
+    background:#dc2626;
 }
 
 .good{
@@ -161,14 +275,25 @@ header p{
     background:#64748b;
 }
 
+.footer{
+
+    margin-top:60px;
+    margin-bottom:20px;
+
+    text-align:center;
+
+    color:#888;
+}
+
 @media(max-width:700px){
 
-    header h1{
-        font-size:28px;
+    .hero h1{
+        font-size:32px;
     }
 
-    header p{
-        font-size:14px;
+    .hero img{
+        width:120px;
+        height:120px;
     }
 
 }
@@ -179,58 +304,83 @@ header p{
 
 <body>
 
-<div style="text-align:center;margin:20px 0;">
-  <img
-    src="icon-512.png"
-    alt="Tirana Buddy"
-    style="width:180px;border-radius:50%;">
-</div>
+<div class="hero">
 
-<header>
-
-
-<header>
+<img
+src="icon-512.png"
+alt="Tirana Buddy">
 
 <h1>🇦🇱 Tirana Buddy</h1>
 
-<p>
-19.11.2026 – 22.11.2026
+<div class="subtitle">
+Dein persönlicher Reisebegleiter
+für Tirana
+</div>
+
+<div class="travelline">
+📅 19.11.2026 – 22.11.2026
 <br>
-We Love Tirana Central Apartments
-</p>
+🏨 We Love Tirana Central Apartments
+<br>
+🚗 Mietwagen vorhanden
+</div>
 
 <div class="toolbar">
 
-<button class="btn" onclick="toggleDarkMode()">
+<button
+class="btn"
+onclick="toggleDarkMode()">
+
 🌙 Dark Mode
+
 </button>
 
-<button class="btn" onclick="resetTrip()">
-♻️ Zurücksetzen
+<button
+class="btn"
+onclick="resetTrip()">
+
+♻️ Reset
+
 </button>
 
 </div>
 
-</header>
+</div>
 
 <div class="container">
 
-<div class="grid grid-4">
+<div class="dashboard">
 
 <div class="card">
 
 <h2>✈️ Flug</h2>
 
 <div class="flightbox">
-NUE → Tirana<br>
-19.11.2026<br>
+
+NUE → Tirana
+
+<br>
+
+19.11.2026
+
+<br>
+
 14:55 – 16:55
+
 </div>
 
 <div class="flightbox">
-Tirana → NUE<br>
-22.11.2026<br>
+
+Tirana → NUE
+
+<br>
+
+22.11.2026
+
+<br>
+
 18:40 – 20:50
+
 </div>
 
 </div>
@@ -239,356 +389,673 @@ Tirana → NUE<br>
 
 <h2>🏨 Unterkunft</h2>
 
-<strong>We Love Tirana Central Apartments</strong>
+<strong>
+We Love Tirana Central Apartments
+</strong>
 
-<p>
-Zentrale Lage,
-ideal für die Erkundung
-von Tirana zu Fuß.
-</p>
+<br><br>
 
-<p>
-🚗 Mietwagen vorhanden
+📍 Innenstadt
+
+<br><br>
+
+Perfekt für
+Skanderbeg-Platz,
+Blloku und Pyramide.
+
+</div>
+
+<div class="card">
+
+<h2>🏆 Reisefortschritt</h2>
+
+<div
+id="progressPercent"
+class="stat">
+
+0%
+
+</div>
+
+<div class="progress-wrap">
+
+<div
+id="progressBar"
+class="progress-bar">
+
+0%
+
+</div>
+
+</div>
+
+<p
+id="progressText"
+style="margin-top:10px;">
+
+0 von 13 Highlights
+
 </p>
 
 </div>
 
 <div class="card">
 
-<h2>📈 Fortschritt</h2>
+<h2>🍴 Food Challenge</h2>
 
-<div class="stat" id="progressPercent">
-0%
-</div>
+<div
+class="stat"
+id="foodCounter">
 
-<div class="progressbar">
-<div class="progressfill" id="progressBar">
-0%
-</div>
-</div>
-
-<p id="progressText">
-0 von 13 Sehenswürdigkeiten
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>🍽️ Food Challenge</h2>
-
-<div class="stat" id="foodCounter">
 0 / 7
+
 </div>
 
 <p>
-Probierte albanische Spezialitäten
+
+Albanische Spezialitäten
+
 </p>
 
 </div>
 
 </div>
 
-<!-- ========================= -->
+<!-- ======================== -->
 <!-- SEHENSWÜRDIGKEITEN -->
-<!-- ========================= -->
+<!-- ======================== -->
 
 <div class="section">
 
 <h2 class="section-title">
-📍 Sehenswürdigkeiten
+📍 Highlights & Sehenswürdigkeiten
 </h2>
+
+<div class="dashboard">
 
 <div class="card">
 
-<div class="sight-item">
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Skanderbeg-Platz</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="skanderbeg">
+
+<strong>
+Skanderbeg-Platz
+</strong>
+
 </label>
+
 <br>
-<span class="badge must">⭐⭐⭐ Must See</span>
-<br>
-Eintritt: Kostenlos
-<br>
-<a target="_blank"
+
+<span class="badge must">
+⭐⭐⭐ Must See
+</span>
+
+<p style="margin-top:10px;">
+Herz der Stadt
+</p>
+
+<p>
+💰 Kostenlos
+</p>
+
+<a
+target="_blank"
 href="https://maps.google.com/?q=Skanderbeg+Square+Tirana">
-🗺️ Google Maps
+🗺 Google Maps
 </a>
-<hr>
+
 </div>
 
-<div class="sight-item">
-<label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Et'hem-Bey-Moschee</strong>
-</label>
-<br>
-<span class="badge good">⭐⭐ Empfehlenswert</span>
-<br>
-Eintritt: Kostenlos
-<br>
-<a target="_blank"
-href="https://maps.google.com/?q=Et+hem+Bey+Mosque">
-🗺️ Google Maps
-</a>
-<hr>
-</div>
+<div class="card">
 
-<div class="sight-item">
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Pyramide von Tirana</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="pyramid">
+
+<strong>
+Pyramide von Tirana
+</strong>
+
 </label>
+
 <br>
-<span class="badge must">⭐⭐⭐ Must See</span>
-<br>
-Eintritt: Kostenlos
-<br>
-<a target="_blank"
+
+<span class="badge must">
+⭐⭐⭐ Must See
+</span>
+
+<p style="margin-top:10px;">
+Modernes Wahrzeichen
+</p>
+
+<p>
+💰 Kostenlos
+</p>
+
+<a
+target="_blank"
 href="https://maps.google.com/?q=Pyramid+of+Tirana">
-🗺️ Google Maps
+🗺 Google Maps
 </a>
-<hr>
+
 </div>
 
-<div class="sight-item">
+<div class="card">
+
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Blloku Viertel</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="blloku">
+
+<strong>
+Blloku Viertel
+</strong>
+
 </label>
+
 <br>
-<span class="badge must">⭐⭐⭐ Must See</span>
-<br>
-Bars, Cafés und Nachtleben
-<br>
-<a target="_blank"
+
+<span class="badge must">
+⭐⭐⭐ Must See
+</span>
+
+<p style="margin-top:10px;">
+Bars • Cafés • Nachtleben
+</p>
+
+<p>
+💰 Kostenlos
+</p>
+
+<a
+target="_blank"
 href="https://maps.google.com/?q=Blloku+Tirana">
-🗺️ Google Maps
+🗺 Google Maps
 </a>
-<hr>
+
 </div>
 
-<div class="sight-item">
+<div class="card">
+
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Bunk'Art 1</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="bunkart1">
+
+<strong>
+Bunk'Art 1
+</strong>
+
 </label>
+
 <br>
-<span class="badge must">⭐⭐⭐ Must See</span>
-<br>
-Eintritt ca. 500 ALL
-<br>
-<a target="_blank"
+
+<span class="badge must">
+⭐⭐⭐ Must See
+</span>
+
+<p style="margin-top:10px;">
+Atomschutzbunker Museum
+</p>
+
+<p>
+💰 ca. 500 ALL
+</p>
+
+<a
+target="_blank"
 href="https://maps.google.com/?q=BunkArt+1">
-🗺️ Google Maps
+🗺 Google Maps
 </a>
-<hr>
+
 </div>
 
-<div class="sight-item">
+<div class="card">
+
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Bunk'Art 2</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="bunkart2">
+
+<strong>
+Bunk'Art 2
+</strong>
+
 </label>
+
 <br>
-<span class="badge must">⭐⭐⭐ Must See</span>
-<br>
-Eintritt ca. 500 ALL
-<br>
-<a target="_blank"
+
+<span class="badge must">
+⭐⭐⭐ Must See
+</span>
+
+<p style="margin-top:10px;">
+Geschichte der Diktatur
+</p>
+
+<p>
+💰 ca. 500 ALL
+</p>
+
+<a
+target="_blank"
 href="https://maps.google.com/?q=BunkArt+2">
-🗺️ Google Maps
+🗺 Google Maps
 </a>
-<hr>
+
 </div>
 
-<div class="sight-item">
+<div class="card">
+
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>House of Leaves</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="houseofleaves">
+
+<strong>
+House of Leaves
+</strong>
+
 </label>
+
 <br>
-<span class="badge good">⭐⭐ Empfehlenswert</span>
-<br>
-Eintritt ca. 700 ALL
-<br>
-<a target="_blank"
+
+<span class="badge good">
+⭐⭐ Empfehlenswert
+</span>
+
+<p style="margin-top:10px;">
+Geheimdienstmuseum
+</p>
+
+<p>
+💰 ca. 700 ALL
+</p>
+
+<a
+target="_blank"
 href="https://maps.google.com/?q=House+of+Leaves+Tirana">
-🗺️ Google Maps
+🗺 Google Maps
 </a>
-<hr>
+
 </div>
 
-<div class="sight-item">
+<div class="card">
+
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Dajti Express</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="dajti">
+
+<strong>
+Dajti Express
+</strong>
+
 </label>
+
 <br>
-<span class="badge must">⭐⭐⭐ Must See</span>
-<br>
+
+<span class="badge must">
+⭐⭐⭐ Must See
+</span>
+
+<p style="margin-top:10px;">
 Panoramablick auf Tirana
-<br>
-<a target="_blank"
+</p>
+
+<p>
+💰 Seilbahn
+</p>
+
+<a
+target="_blank"
 href="https://maps.google.com/?q=Dajti+Ekspres">
-🗺️ Google Maps
+🗺 Google Maps
 </a>
-<hr>
+
 </div>
 
-<div class="sight-item">
+<div class="card">
+
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Kruja Burg</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="park">
+
+<strong>
+Großer Stadtpark
+</strong>
+
 </label>
+
 <br>
-<span class="badge must">⭐⭐⭐ Must See</span>
+
+<span class="badge good">
+⭐⭐ Empfehlenswert
+</span>
+
+<p style="margin-top:10px;">
+See und Spazierwege
+</p>
+
+<p>
+💰 Kostenlos
+</p>
+
+<a
+target="_blank"
+href="https://maps.google.com/?q=Grand+Park+Tirana">
+🗺 Google Maps
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ======================== -->
+<!-- KRUJA & AUSFLÜGE -->
+<!-- ======================== -->
+
+<div class="section">
+
+<h2 class="section-title">
+🏰 Kruja & Tagesausflüge
+</h2>
+
+<div class="dashboard">
+
+<div class="card">
+
+<label>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="kruja">
+
+<strong>
+Kruja Burg
+</strong>
+
+</label>
+
 <br>
+
+<span class="badge must">
+⭐⭐⭐ Must See
+</span>
+
+<p style="margin-top:10px;">
 Historisches Zentrum Albaniens
-<br>
-<a target="_blank"
-href="https://maps.google.com/?q=Kruje+Castle">
-🗺️ Google Maps
-</a>
-<hr>
+</p>
+
 </div>
 
-<div class="sight-item">
+<div class="card">
+
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Alter Basar Kruja</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="bazaar">
+
+<strong>
+Alter Basar
+</strong>
+
 </label>
+
 <br>
-<span class="badge must">⭐⭐⭐ Must See</span>
-<br>
-Handwerk & Souvenirs
-<br>
-<a target="_blank"
-href="https://maps.google.com/?q=Kruje+Bazaar">
-🗺️ Google Maps
-</a>
-<hr>
+
+<span class="badge must">
+⭐⭐⭐ Must See
+</span>
+
+<p style="margin-top:10px;">
+Souvenirs & Handwerk
+</p>
+
 </div>
 
-<div class="sight-item">
+<div class="card">
+
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Sari Salltik</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="sarisalltik">
+
+<strong>
+Sari Salltik
+</strong>
+
 </label>
+
 <br>
-<span class="badge must">⭐⭐⭐ Must See</span>
-<br>
-Bester Aussichtspunkt über Kruja
-<br>
-<a target="_blank"
-href="https://maps.google.com/?q=Sari+Salltik+Kruje">
-🗺️ Google Maps
-</a>
-<hr>
+
+<span class="badge must">
+⭐⭐⭐ Must See
+</span>
+
+<p style="margin-top:10px;">
+Aussichtspunkt über Kruja
+</p>
+
 </div>
 
-<div class="sight-item">
+<div class="card">
+
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Durrës</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="durres">
+
+<strong>
+Durrës
+</strong>
+
 </label>
+
 <br>
-<span class="badge good">⭐⭐ Empfehlenswert</span>
-<br>
-Meer & Altstadt
-<br>
-<a target="_blank"
-href="https://maps.google.com/?q=Durres+Albania">
-🗺️ Google Maps
-</a>
-<hr>
+
+<span class="badge good">
+⭐⭐ Empfehlenswert
+</span>
+
+<p style="margin-top:10px;">
+Promenade & Meer
+</p>
+
 </div>
 
-<div class="sight-item">
+<div class="card">
+
 <label>
-<input type="checkbox" class="sight-checkbox">
-<strong>Kap Rodon</strong>
+
+<input
+type="checkbox"
+class="sight-checkbox"
+data-id="rodon">
+
+<strong>
+Kap Rodon
+</strong>
+
 </label>
+
 <br>
-<span class="badge must">⭐⭐⭐ Must See</span>
-<br>
+
+<span class="badge must">
+⭐⭐⭐ Must See
+</span>
+
+<p style="margin-top:10px;">
 Küste & Fotospots
-<br>
-<a target="_blank"
-href="https://maps.google.com/?q=Cape+Rodon">
-🗺️ Google Maps
-</a>
+</p>
+
 </div>
 
 </div>
+
 </div>
 
-<!-- ========================= -->
+<!-- ======================== -->
 <!-- FOOD CHALLENGE -->
-<!-- ========================= -->
+<!-- ======================== -->
 
 <div class="section">
 
 <h2 class="section-title">
-🥘 Albanische Food Challenge
+🍽 Albanische Food Challenge
 </h2>
 
 <div class="card">
 
-<label><input type="checkbox" class="food-checkbox"> Tavë Kosi</label><br><br>
+<label>
+<input type="checkbox"
+class="food-checkbox"
+data-id="tave">
+ Tavë Kosi
+</label>
 
-<label><input type="checkbox" class="food-checkbox"> Fërgesë Tirane</label><br><br>
+<br><br>
 
-<label><input type="checkbox" class="food-checkbox"> Byrek</label><br><br>
+<label>
+<input type="checkbox"
+class="food-checkbox"
+data-id="fergese">
+ Fërgesë Tirane
+</label>
 
-<label><input type="checkbox" class="food-checkbox"> Qofte</label><br><br>
+<br><br>
 
-<label><input type="checkbox" class="food-checkbox"> Speca me Gjizë</label><br><br>
+<label>
+<input type="checkbox"
+class="food-checkbox"
+data-id="byrek">
+ Byrek
+</label>
 
-<label><input type="checkbox" class="food-checkbox"> Baklava</label><br><br>
+<br><br>
 
-<label><input type="checkbox" class="food-checkbox"> Raki</label>
+<label>
+<input type="checkbox"
+class="food-checkbox"
+data-id="qofte">
+ Qofte
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="food-checkbox"
+data-id="speca">
+ Speca me Gjizë
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="food-checkbox"
+data-id="baklava">
+ Baklava
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="food-checkbox"
+data-id="raki">
+ Raki
+</label>
 
 </div>
 
 </div>
 
-<!-- ========================= -->
+<!-- ======================== -->
 <!-- RESTAURANTS -->
-<!-- ========================= -->
+<!-- ======================== -->
 
 <div class="section">
 
 <h2 class="section-title">
-🍽️ Restaurant Empfehlungen
+🍷 Restaurant-Tipps
 </h2>
 
+<div class="dashboard">
+
 <div class="card">
+<strong>Oda Garden</strong>
+<br><br>
+Traditionelle albanische Küche
+</div>
 
-<ul>
+<div class="card">
+<strong>Era Blloku</strong>
+<br><br>
+Moderne albanische Küche
+</div>
 
-<li><strong>Oda Garden</strong> – traditionelle Küche</li>
+<div class="card">
+<strong>Zgara Korçare</strong>
+<br><br>
+Grillgerichte
+</div>
 
-<li><strong>Era Blloku</strong> – moderne albanische Küche</li>
+<div class="card">
+<strong>Restaurant Bardhi</strong>
+<br><br>
+Mittagessen in Kruja
+</div>
 
-<li><strong>Zgara Korçare</strong> – Grillgerichte</li>
+<div class="card">
+<strong>Mrizi i Zanave</strong>
+<br><br>
+Kulinarisches Highlight
+</div>
 
-<li><strong>Restaurant Bardhi</strong> – Kruja Aussichtsterrasse</li>
-
-<li><strong>Mrizi i Zanave</strong> – kulinarisches Highlight</li>
-
-<li><strong>Artigiano Vila</strong> – letzter Urlaubstag</li>
-
-</ul>
-
+<div class="card">
+<strong>Artigiano Vila</strong>
+<br><br>
+Perfekt für den letzten Tag
 </div>
 
 </div>
 
-<!-- ========================= -->
+</div>
+
+<!-- ======================== -->
 <!-- REISEPLAN -->
-<!-- ========================= -->
+<!-- ======================== -->
 
 <div class="section">
 
@@ -598,68 +1065,181 @@ href="https://maps.google.com/?q=Cape+Rodon">
 
 <div class="card">
 
-<h3>Donnerstag</h3>
+<h3>Donnerstag · 19.11.2026</h3>
 
-<label><input type="checkbox" class="trip-checkbox"> Flug Nürnberg → Tirana</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Check-In Apartment</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Skanderbeg Platz</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Oda Garden</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Blloku am Abend</label>
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="thu-flight">
+ Flug Nürnberg → Tirana
+</label>
 
-<hr>
+<br><br>
 
-<h3>Freitag</h3>
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="thu-checkin">
+ Check-In Apartment
+</label>
 
-<label><input type="checkbox" class="trip-checkbox"> Bunk'Art 2</label><br>
-<label><input type="checkbox" class="trip-checkbox"> House of Leaves</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Pyramide</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Dajti Express</label>
+<br><br>
 
-<hr>
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="thu-skanderbeg">
+ Skanderbeg Platz
+</label>
 
-<h3>Samstag</h3>
+<br><br>
 
-<label><input type="checkbox" class="trip-checkbox"> Fahrt nach Kruja</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Kruja Burg</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Alter Basar</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Sari Salltik</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Mrizi i Zanave</label>
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="thu-oda">
+ Abendessen Oda Garden
+</label>
 
-<hr>
+<br><br>
 
-<h3>Sonntag</h3>
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="thu-blloku">
+ Blloku bei Nacht
+</label>
 
-<label><input type="checkbox" class="trip-checkbox"> Stadtpark Tirana</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Artigiano Vila</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Mietwagen Rückgabe</label><br>
-<label><input type="checkbox" class="trip-checkbox"> Rückflug</label>
+<hr style="margin:25px 0;">
+
+<h3>Freitag · 20.11.2026</h3>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="fri-bunkart2">
+ Bunk'Art 2
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="fri-leaves">
+ House of Leaves
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="fri-pyramid">
+ Pyramide
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="fri-dajti">
+ Dajti Express
+</label>
+
+<hr style="margin:25px 0;">
+
+<h3>Samstag · 21.11.2026</h3>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="sat-kruja">
+ Kruja Burg
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="sat-bazaar">
+ Alter Basar
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="sat-sari">
+ Sari Salltik
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="sat-bardhi">
+ Restaurant Bardhi
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="sat-mrizi">
+ Mrizi i Zanave
+</label>
+
+<hr style="margin:25px 0;">
+
+<h3>Sonntag · 22.11.2026</h3>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="sun-park">
+ Stadtpark Tirana
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="sun-artigiano">
+ Artigiano Vila
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="sun-car">
+ Mietwagen Rückgabe
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox"
+class="trip-checkbox"
+data-id="sun-flight">
+ Rückflug Nürnberg
+</label>
 
 </div>
 
 </div>
 
-<!-- ========================= -->
-<!-- WETTER -->
-<!-- ========================= -->
-
-<div class="section">
-
-<h2 class="section-title">
-🌦 Wetter & Notizen
-</h2>
-
-<div class="card">
-
-<textarea id="weatherNotes" rows="5"
-placeholder="Wetterprognose oder Reise-Notizen..."></textarea>
-
-</div>
-
-</div>
-
-<!-- ========================= -->
+<!-- ======================== -->
 <!-- ROADTRIP -->
-<!-- ========================= -->
+<!-- ======================== -->
 
 <div class="section">
 
@@ -667,158 +1247,184 @@ placeholder="Wetterprognose oder Reise-Notizen..."></textarea>
 🚗 Roadtrip Navigation
 </h2>
 
+<div class="dashboard">
+
 <div class="card">
 
-<ul>
+<h3>Tirana Innenstadt</h3>
 
-<li>
 <a target="_blank"
 href="https://maps.google.com/?q=Skanderbeg+Square+Tirana">
-Apartment → Skanderbeg-Platz
-</a>
-</li>
 
-<li>
+📍 Skanderbeg Platz
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>Dajti Express</h3>
+
 <a target="_blank"
 href="https://maps.google.com/?q=Dajti+Ekspres">
-Apartment → Dajti Express
-</a>
-</li>
 
-<li>
+🚡 Dajti Seilbahn
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>Kruja</h3>
+
 <a target="_blank"
 href="https://maps.google.com/?q=Kruje+Castle">
-Tirana → Kruja Burg
-</a>
-</li>
 
-<li>
+🏰 Burg von Kruja
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>Sari Salltik</h3>
+
 <a target="_blank"
 href="https://maps.google.com/?q=Sari+Salltik+Kruje">
-Kruja → Sari Salltik
-</a>
-</li>
 
-<li>
+⛰ Aussichtspunkt
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>Kap Rodon</h3>
+
 <a target="_blank"
 href="https://maps.google.com/?q=Cape+Rodon+Albania">
-Kruja → Kap Rodon
-</a>
-</li>
 
-<li>
+🌊 Küste
+
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>Durrës</h3>
+
 <a target="_blank"
 href="https://maps.google.com/?q=Durres+Albania">
-Tirana → Durrës
-</a>
-</li>
 
-<li>
-<a target="_blank"
-href="https://maps.google.com/?q=Tirana+International+Airport">
-Apartment → Flughafen
-</a>
-</li>
+🏖 Meer & Promenade
 
-</ul>
+</a>
 
 </div>
 
 </div>
 
-<!-- ========================= -->
-<!-- WÄHRUNG -->
-<!-- ========================= -->
+</div>
+
+<!-- ======================== -->
+<!-- WETTER -->
+<!-- ======================== -->
 
 <div class="section">
 
 <h2 class="section-title">
-💶 EUR ⇄ 🇦🇱 ALL
+🌦 Wetter & Reisehinweise
 </h2>
 
 <div class="card">
 
-<label>Wechselkurs (ALL pro EUR)</label>
+<textarea
+id="weatherNotes"
+rows="8"
+style="width:100%;padding:10px;">
 
-<input
-type="number"
-id="rate"
-value="98">
+</textarea>
 
-<br><br>
+<p style="margin-top:10px;">
 
-<label>Euro</label>
+Beispielsweise:
 
-<input
-type="number"
-id="eurInput">
+• Wettervorhersage
 
-<br><br>
+• Parktipps
 
-<button onclick="convertEurToAll()">
-EUR → ALL
-</button>
+• Restaurants
 
-<br><br>
+• Öffnungszeiten
 
-<label>Albanische Lek</label>
-
-<input
-type="number"
-id="allInput">
-
-<br><br>
-
-<button onclick="convertAllToEur()">
-ALL → EUR
-</button>
-
-<h3 id="currencyResult"></h3>
+</p>
 
 </div>
 
 </div>
 
-<!-- ========================= -->
-<!-- KOSTEN -->
-<!-- ========================= -->
+<!-- ======================== -->
+<!-- REISEJOURNAL -->
+<!-- ======================== -->
 
 <div class="section">
 
 <h2 class="section-title">
-💰 Kosten Tracker
+📔 Reisejournal
 </h2>
+
+<div class="dashboard">
 
 <div class="card">
 
-<input
-type="text"
-id="expenseName"
-placeholder="Beschreibung">
+<h3>Bestes Essen</h3>
 
-<br><br>
+<textarea
+id="journalFood"
+rows="5"
+style="width:100%;padding:10px;">
+</textarea>
 
-<input
-type="number"
-id="expenseAmount"
-placeholder="Betrag in Euro">
+</div>
 
-<br><br>
+<div class="card">
 
-<button onclick="addExpense()">
-Ausgabe speichern
-</button>
+<h3>Bester Spot</h3>
 
-<hr>
+<textarea
+id="journalSpot"
+rows="5"
+style="width:100%;padding:10px;">
+</textarea>
 
-<ul id="expenseList"></ul>
+</div>
 
-<h3>
-Gesamt:
-<span id="expenseTotal">
-0.00
-</span> €
-</h3>
+<div class="card">
+
+<h3>Highlight des Trips</h3>
+
+<textarea
+id="journalHighlight"
+rows="5"
+style="width:100%;padding:10px;">
+</textarea>
+
+</div>
+
+<div class="card">
+
+<h3>Freie Notizen</h3>
+
+<textarea
+id="journalNotes"
+rows="5"
+style="width:100%;padding:10px;">
+</textarea>
 
 </div>
 
@@ -826,432 +1432,4 @@ Gesamt:
 
 </div>
 
-<script>
-
-/* ========= DARK MODE ========= */
-
-function toggleDarkMode(){
-
-    document.body.classList.toggle("dark");
-
-    localStorage.setItem(
-        "darkMode",
-        document.body.classList.contains(
-            "dark"
-        )
-    );
-
-}
-
-/* ========= SPEICHERUNG ========= */
-
-function saveLocal(){
-
-    const sights = [];
-
-    document
-    .querySelectorAll(".sight-checkbox")
-    .forEach(box=>{
-        sights.push(box.checked);
-    });
-
-    localStorage.setItem(
-        "sights",
-        JSON.stringify(sights)
-    );
-
-    const foods = [];
-
-    document
-    .querySelectorAll(".food-checkbox")
-    .forEach(box=>{
-        foods.push(box.checked);
-    });
-
-    localStorage.setItem(
-        "foods",
-        JSON.stringify(foods)
-    );
-
-    const trips = [];
-
-    document
-    .querySelectorAll(".trip-checkbox")
-    .forEach(box=>{
-        trips.push(box.checked);
-    });
-
-    localStorage.setItem(
-        "trips",
-        JSON.stringify(trips)
-    );
-
-    localStorage.setItem(
-        "weatherNotes",
-        document.getElementById(
-            "weatherNotes"
-        ).value
-    );
-
-}
-
-function loadLocal(){
-
-    if(
-        localStorage.getItem(
-            "darkMode"
-        ) === "true"
-    ){
-        document.body.classList.add(
-            "dark"
-        );
-    }
-
-    const sights =
-        JSON.parse(
-            localStorage.getItem(
-                "sights"
-            )
-        ) || [];
-
-    document
-    .querySelectorAll(".sight-checkbox")
-    .forEach((box,index)=>{
-
-        if(
-            sights[index] !== undefined
-        ){
-            box.checked =
-            sights[index];
-        }
-
-    });
-
-    const foods =
-        JSON.parse(
-            localStorage.getItem(
-                "foods"
-            )
-        ) || [];
-
-    document
-    .querySelectorAll(".food-checkbox")
-    .forEach((box,index)=>{
-
-        if(
-            foods[index] !== undefined
-        ){
-            box.checked =
-            foods[index];
-        }
-
-    });
-
-    const trips =
-        JSON.parse(
-            localStorage.getItem(
-                "trips"
-            )
-        ) || [];
-
-    document
-    .querySelectorAll(".trip-checkbox")
-    .forEach((box,index)=>{
-
-        if(
-            trips[index] !== undefined
-        ){
-            box.checked =
-            trips[index];
-        }
-
-    });
-
-    document.getElementById(
-        "weatherNotes"
-    ).value =
-        localStorage.getItem(
-            "weatherNotes"
-        ) || "";
-
-}
-
-/* ========= PROGRESS ========= */
-
-function updateProgress(){
-
-    const total =
-        document.querySelectorAll(
-            ".sight-checkbox"
-        ).length;
-
-    const done =
-        document.querySelectorAll(
-            ".sight-checkbox:checked"
-        ).length;
-
-    const percent =
-        total
-        ?
-        Math.round(
-            done * 100 / total
-        )
-        :
-        0;
-
-    document.getElementById(
-        "progressPercent"
-    ).innerText =
-        percent + "%";
-
-    document.getElementById(
-        "progressBar"
-    ).style.width =
-        percent + "%";
-
-    document.getElementById(
-        "progressBar"
-    ).innerText =
-        percent + "%";
-
-    document.getElementById(
-        "progressText"
-    ).innerText =
-        done +
-        " von " +
-        total +
-        " Sehenswürdigkeiten";
-
-}
-
-function updateFood(){
-
-    const total =
-      document.querySelectorAll(
-        ".food-checkbox"
-      ).length;
-
-    const done =
-      document.querySelectorAll(
-        ".food-checkbox:checked"
-      ).length;
-
-    document.getElementById(
-        "foodCounter"
-    ).innerText =
-        done +
-        " / " +
-        total;
-}
-
-/* ========= WÄHRUNG ========= */
-
-function convertEurToAll(){
-
-    const eur =
-      parseFloat(
-        document.getElementById(
-          "eurInput"
-        ).value
-      );
-
-    const rate =
-      parseFloat(
-        document.getElementById(
-          "rate"
-        ).value
-      );
-
-    if(isNaN(eur)) return;
-
-    document.getElementById(
-      "currencyResult"
-    ).innerText =
-      eur.toFixed(2) +
-      " EUR = " +
-      (eur*rate).toFixed(0) +
-      " ALL";
-
-}
-
-function convertAllToEur(){
-
-    const all =
-      parseFloat(
-        document.getElementById(
-          "allInput"
-        ).value
-      );
-
-    const rate =
-      parseFloat(
-        document.getElementById(
-          "rate"
-        ).value
-      );
-
-    if(isNaN(all)) return;
-
-    document.getElementById(
-      "currencyResult"
-    ).innerText =
-      all.toFixed(0) +
-      " ALL = " +
-      (all/rate).toFixed(2) +
-      " EUR";
-
-}
-
-/* ========= KOSTEN ========= */
-
-let expenses =
-JSON.parse(
-localStorage.getItem(
-"expenses"
-)) || [];
-
-function renderExpenses(){
-
-    const list =
-      document.getElementById(
-        "expenseList"
-      );
-
-    list.innerHTML="";
-
-    let total=0;
-
-    expenses.forEach(item=>{
-
-        total += item.amount;
-
-        const li =
-        document.createElement("li");
-
-        li.textContent =
-        item.name +
-        " - " +
-        item.amount.toFixed(2) +
-        " €";
-
-        list.appendChild(li);
-
-    });
-
-    document.getElementById(
-        "expenseTotal"
-    ).innerText =
-        total.toFixed(2);
-
-}
-
-function addExpense(){
-
-    const name =
-      document.getElementById(
-        "expenseName"
-      ).value;
-
-    const amount =
-      parseFloat(
-      document.getElementById(
-        "expenseAmount"
-      ).value
-      );
-
-    if(
-       !name ||
-       isNaN(amount)
-    ){
-        return;
-    }
-
-    expenses.push({
-        name:name,
-        amount:amount
-    });
-
-    localStorage.setItem(
-        "expenses",
-        JSON.stringify(expenses)
-    );
-
-    document.getElementById(
-      "expenseName"
-    ).value="";
-
-    document.getElementById(
-      "expenseAmount"
-    ).value="";
-
-    renderExpenses();
-
-}
-
-/* ========= RESET ========= */
-
-function resetTrip(){
-
-    if(
-      confirm(
-      "Alle Daten löschen?"
-      )
-    ){
-
-        localStorage.clear();
-        location.reload();
-
-    }
-
-}
-
-/* ========= EVENTS ========= */
-
-document
-.querySelectorAll(
-".sight-checkbox,.food-checkbox,.trip-checkbox"
-)
-.forEach(box=>{
-
-    box.addEventListener(
-        "change",
-        ()=>{
-
-            saveLocal();
-            updateProgress();
-            updateFood();
-
-        }
-    );
-
-});
-
-document
-.getElementById("weatherNotes")
-.addEventListener(
-"input",
-saveLocal
-);
-
-/* ========= SERVICE WORKER ========= */
-
-if ('serviceWorker' in navigator) {
-
-    navigator.serviceWorker
-    .register('./service-worker.js')
-    .then(() => {
-        console.log('Service Worker aktiv');
-    })
-    .catch(err => {
-        console.log('SW Fehler:', err);
-    });
-
-}
-
-
-/* ========= START ========= */
-
-loadLocal();
-updateProgress();
-updateFood();
-renderExpenses();
+<!-- BLOCK 4 STARTET HIER -->

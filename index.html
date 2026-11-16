@@ -1223,14 +1223,25 @@ document
 saveLocal
 );
 
+/* ========= SERVICE WORKER ========= */
+
+if ('serviceWorker' in navigator) {
+
+    navigator.serviceWorker
+    .register('./service-worker.js')
+    .then(() => {
+        console.log('Service Worker aktiv');
+    })
+    .catch(err => {
+        console.log('SW Fehler:', err);
+    });
+
+}
+
+
 /* ========= START ========= */
 
 loadLocal();
 updateProgress();
 updateFood();
 renderExpenses();
-
-</script>
-
-</body>
-</html>

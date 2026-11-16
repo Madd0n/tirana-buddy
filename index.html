@@ -1646,4 +1646,556 @@ for Martin & Claudia
 
 </div>
 
-<!-- BLOCK 5 STARTET HIER -->
+<script>
+
+/* ====================================
+   DARK MODE
+==================================== */
+
+function toggleDarkMode(){
+
+    document.body.classList.toggle("dark");
+
+    localStorage.setItem(
+        "darkMode",
+        document.body.classList.contains("dark")
+    );
+
+}
+
+/* ====================================
+   RESET
+==================================== */
+
+function resetTrip(){
+
+    if(
+        confirm(
+            "Wirklich alle Daten löschen?"
+        )
+    ){
+
+        localStorage.clear();
+
+        location.reload();
+
+    }
+
+}
+
+/* ====================================
+   CHECKBOXEN SPEICHERN
+==================================== */
+
+function saveCheckboxes(){
+
+    document
+    .querySelectorAll(
+        ".sight-checkbox,.food-checkbox,.trip-checkbox"
+    )
+    .forEach(box => {
+
+        localStorage.setItem(
+            box.dataset.id,
+            box.checked
+        );
+
+    });
+
+}
+
+function loadCheckboxes(){
+
+    document
+    .querySelectorAll(
+        ".sight-checkbox,.food-checkbox,.trip-checkbox"
+    )
+    .forEach(box => {
+
+        const state =
+            localStorage.getItem(
+                box.dataset.id
+            );
+
+        if(state === "true"){
+
+            box.checked = true;
+
+        }
+
+    });
+
+}
+
+/* ====================================
+   FORTSCHRITT
+==================================== */
+
+function updateProgress(){
+
+    const total =
+        document.querySelectorAll(
+            ".sight-checkbox"
+        ).length;
+
+    const done =
+        document.querySelectorAll(
+            ".sight-checkbox:checked"
+        ).length;
+
+    const percent =
+        Math.round(
+            (done / total) * 100
+        );
+
+    document.getElementById(
+        "progressPercent"
+    ).textContent =
+        percent + "%";
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        percent + "%";
+
+    document.getElementById(
+        "progressBar"
+    ).textContent =
+        percent + "%";
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        done +
+        " von " +
+        total +
+        " Highlights";
+
+}
+
+/* ====================================
+   FOOD COUNTER
+==================================== */
+
+function updateFoodCounter(){
+
+    const total =
+        document.querySelectorAll(
+            ".food-checkbox"
+        ).length;
+
+    const done =
+        document.querySelectorAll(
+            ".food-checkbox:checked"
+        ).length;
+
+    document.getElementById(
+        "foodCounter"
+    ).textContent =
+        done + " / " + total;
+
+}
+
+/* ====================================
+   WÄHRUNG
+==================================== */
+
+function convertEurToAll(){
+
+    const eur =
+        parseFloat(
+            document.getElementById(
+                "eurInput"
+            ).value
+        );
+
+    const rate =
+        parseFloat(
+            document.getElementById(
+                "exchangeRate"
+            ).value
+        );
+
+    if(isNaN(eur)) return;
+
+    document.getElementById(
+        "currencyResult"
+    ).textContent =
+        eur.toFixed(2) +
+        " EUR = " +
+        (eur * rate).toFixed(0) +
+        " ALL";
+
+}
+
+function convertAllToEur(){
+
+    const all =
+        parseFloat(
+            document.getElementById(
+                "allInput"
+            ).value
+        );
+
+    const rate =
+        parseFloat(
+            document.getElementById(
+                "exchangeRate"
+            ).value
+        );
+
+    if(isNaN(all)) return;
+
+    document.getElementById(
+        "currencyResult"
+    ).textContent =
+        all.toFixed(0) +
+        " ALL = " +
+        (all / rate).toFixed(2) +
+        " EUR";
+
+}
+
+/* ====================================
+   KOSTEN TRACKER
+==================================== */
+
+let expenses =
+JSON.parse(
+    localStorage.getItem("expenses")
+) || [];
+
+function renderExpenses(){
+
+    const list =
+        document.getElementById(
+            "expenseList"
+        );
+
+    list.innerHTML = "";
+
+    let total = 0;
+
+    expenses.forEach(item => {
+
+        total += item.amount;
+
+        const li =
+            document.createElement("li");
+
+        li.textContent =
+            item.name +
+            " - " +
+            item.amount.toFixed(2) +
+            " €";
+
+        list.appendChild(li);
+
+    });
+
+    document.getElementById(
+        "expenseTotal"
+    ).textContent =
+        total.toFixed(2);
+
+}
+
+function addExpense(){
+
+    const name =
+        document.getElementById(
+            "expenseName"
+        ).value;
+
+    const amount =
+        parseFloat(
+            document.getElementById(
+                "expenseAmount"
+            ).value
+        );
+
+    if(
+        !name ||
+        isNaN(amount)
+    ){
+        return;
+    }
+
+    expenses.push({
+        name:name,
+        amount:amount
+    });
+
+    localStorage.setItem(
+        "expenses",
+        JSON.stringify(expenses)
+    );
+
+    document.getElementById(
+        "expenseName"
+    ).value = "";
+
+    document.getElementById(
+        "expenseAmount"
+    ).value = "";
+
+    renderExpenses();
+
+}
+
+/* ====================================
+   NOTIZEN
+==================================== */
+
+function saveTextFields(){
+
+    const ids = [
+
+        "weatherNotes",
+        "journalFood",
+        "journalSpot",
+        "journalHighlight",
+        "journalNotes"
+
+    ];
+
+    ids.forEach(id => {
+
+        const field =
+            document.getElementById(id);
+
+        if(field){
+
+            localStorage.setItem(
+                id,
+                field.value
+            );
+
+        }
+
+    });
+
+}
+
+function loadTextFields(){
+
+    const ids = [
+
+        "weatherNotes",
+        "journalFood",
+        "journalSpot",
+        "journalHighlight",
+        "journalNotes"
+
+    ];
+
+    ids.forEach(id => {
+
+        const field =
+            document.getElementById(id);
+
+        if(field){
+
+            field.value =
+                localStorage.getItem(id)
+                || "";
+
+        }
+
+    });
+
+}
+
+/* ====================================
+   BACKUP
+==================================== */
+
+function exportBackup(){
+
+    const backup = {};
+
+    for(let i=0;i<localStorage.length;i++){
+
+        const key =
+            localStorage.key(i);
+
+        backup[key] =
+            localStorage.getItem(key);
+
+    }
+
+    const blob =
+        new Blob(
+            [
+                JSON.stringify(
+                    backup,
+                    null,
+                    2
+                )
+            ],
+            {
+                type:
+                "application/json"
+            }
+        );
+
+    const a =
+        document.createElement("a");
+
+    a.href =
+        URL.createObjectURL(blob);
+
+    a.download =
+        "tirana-buddy-backup.json";
+
+    a.click();
+
+}
+
+function importBackup(){
+
+    const file =
+        document.getElementById(
+            "backupFile"
+        ).files[0];
+
+    if(!file) return;
+
+    const reader =
+        new FileReader();
+
+    reader.onload =
+    function(e){
+
+        const data =
+            JSON.parse(
+                e.target.result
+            );
+
+        Object.keys(data)
+        .forEach(key => {
+
+            localStorage.setItem(
+                key,
+                data[key]
+            );
+
+        });
+
+        location.reload();
+
+    };
+
+    reader.readAsText(file);
+
+}
+
+/* ====================================
+   EVENTS
+==================================== */
+
+document.addEventListener(
+    "change",
+    function(e){
+
+        if(
+
+            e.target.classList.contains(
+                "sight-checkbox"
+            ) ||
+
+            e.target.classList.contains(
+                "food-checkbox"
+            ) ||
+
+            e.target.classList.contains(
+                "trip-checkbox"
+            )
+
+        ){
+
+            saveCheckboxes();
+            updateProgress();
+            updateFoodCounter();
+
+        }
+
+    }
+);
+
+[
+    "weatherNotes",
+    "journalFood",
+    "journalSpot",
+    "journalHighlight",
+    "journalNotes"
+
+].forEach(id => {
+
+    const el =
+        document.getElementById(id);
+
+    if(el){
+
+        el.addEventListener(
+            "input",
+            saveTextFields
+        );
+
+    }
+
+});
+
+/* ====================================
+   PWA
+==================================== */
+
+if(
+    "serviceWorker"
+    in navigator
+){
+
+    navigator.serviceWorker
+    .register(
+        "service-worker.js"
+    )
+    .catch(err=>{
+
+        console.log(
+            err
+        );
+
+    });
+
+}
+
+/* ====================================
+   START
+==================================== */
+
+if(
+    localStorage.getItem(
+        "darkMode"
+    ) === "true"
+){
+
+    document.body.classList.add(
+        "dark"
+    );
+
+}
+
+loadCheckboxes();
+
+loadTextFields();
+
+renderExpenses();
+
+updateProgress();
+
+updateFoodCounter();
+
+</script>
+
+</body>
+</html>
